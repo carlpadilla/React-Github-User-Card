@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { ThemeProvider, createTheme, Arwes } from 'arwes';
 
 import Axios from 'axios';
 
@@ -41,11 +42,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <Cards
-        userInfo={this.state.userInfo}
-        followers={this.state.followers}
-        repos={this.state.repos}
-      />
+      <ThemeProvider theme={createTheme()}>
+        <Arwes>
+          <Cards
+            userInfo={this.state.userInfo}
+            repos={this.state.repos}
+            followers={this.state.followers}
+          />
+        </Arwes>
+      </ThemeProvider>
     );
   }
 }
