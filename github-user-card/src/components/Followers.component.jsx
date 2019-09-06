@@ -34,11 +34,13 @@ const Followers = props => (
               lg={{ span: 2 }}
               xl={{ span: 1 }}
             >
-              <Image
-                key={follower.id}
-                src={`${follower.avatar_url}.jpg`}
-                width='100%'
-              />
+              <a href={follower.html_url}>
+                <Image
+                  key={follower.id}
+                  src={`${follower.avatar_url}.jpg`}
+                  width='100%'
+                />
+              </a>
               <p>{follower.login}</p>
             </Col>
           ))}

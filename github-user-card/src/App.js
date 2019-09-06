@@ -6,6 +6,8 @@ import Axios from 'axios';
 
 import Cards from './components/Cards.component';
 import Followers from './components/Followers.component';
+import Search from './components/Search.component';
+import Repos from './components/Repos.component';
 
 class App extends React.Component {
   constructor() {
@@ -51,9 +53,11 @@ class App extends React.Component {
             repos={this.state.repos}
           />
         </Container>
+        <Search />
         <Container title='Followers'>
           <Followers followers={this.state.followers} />
         </Container>
+        <Repos />
       </div>
     );
   }
