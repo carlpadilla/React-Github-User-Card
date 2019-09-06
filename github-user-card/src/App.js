@@ -1,32 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import Axios from 'axios';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      user: []
+      userInfo: {},
+      followers: {},
+      repos: {}
     };
   }
+
+  componentDidMount() {
+    console.log('CDU');
+    Axios.get('https://api.github.com/users/carlpadilla')
+      .then(res => {
+        console.log('userinfo', res);
+        this.setState({ userInfo: res.data });
+      })
+      .catch(err => console.error(err));
+
+    Axios.get('https://api.github.com/users/carlpadilla/followers')
+      .then(res => {
+        console.log('followers', res);
+        this.setState({ followers: res });
+      })
+      .catch(err => console.error(err));
+
+    Axios.get('https://api.github.com/users/carlpadilla/repos')
+      .then(res => {
+        console.log('repos', res);
+        this.setState({ repos: res });
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Github Cards</h1>
+        <h2>{this.state.userInfo.login}</h2>
       </div>
     );
   }
