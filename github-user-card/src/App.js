@@ -3,9 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
-  // }
+  constructor() {
+    super();
+
+    this.state = {
+      user: []
+    };
+  }
   render() {
     return (
       <div className='App'>
