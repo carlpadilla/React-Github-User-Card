@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import { Container } from 'nes-react';
 
 import Axios from 'axios';
 
 import Cards from './components/Cards.component';
+import Followers from './components/Followers.component';
 
 class App extends React.Component {
   constructor() {
@@ -41,11 +43,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <Cards
-        userInfo={this.state.userInfo}
-        followers={this.state.followers}
-        repos={this.state.repos}
-      />
+      <div>
+        <Container className='container'>
+          <Cards
+            userInfo={this.state.userInfo}
+            followers={this.state.followers}
+            repos={this.state.repos}
+          />
+        </Container>
+        <Container title='Followers'>
+          <Followers followers={this.state.followers} />
+        </Container>
+      </div>
     );
   }
 }
