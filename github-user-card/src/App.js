@@ -71,6 +71,9 @@ class App extends React.Component {
     console.log('fetch', this.state);
     return (
       <div>
+        <h1 className='main-title'>
+          <span className='main-title-span'>Github</span> Card Project
+        </h1>
         <Container className='container'>
           <Cards userInfo={this.state.userInfo} />
         </Container>

@@ -19,15 +19,13 @@ const Followers = ({ followers }) => (
               xl={{ span: 2 }}
             >
               <a href={follower.html_url}>
-                <Image
-                  key={follower.id}
-                  src={`${follower.avatar_url}.jpg`}
-                  style={{
-                    padding: '5px',
-                    border: '1px solid black',
-                    margin: '10px'
-                  }}
-                />
+                <figure>
+                  <Image
+                    className='follower-img'
+                    key={follower.id}
+                    src={`${follower.avatar_url}.jpg`}
+                  />
+                </figure>
                 <p style={{ textAlign: 'center' }}>{follower.login}</p>
               </a>
             </Col>

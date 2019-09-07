@@ -39,7 +39,7 @@ class Search extends React.Component {
       <Container title='Search User'>
         <TextInput
           label='Search'
-          placeholder='Search User..'
+          placeholder='Search User..(not working yet )'
           onChange={this.handleChange}
         />
         <Button primary onClick={this.fetchUser}>
