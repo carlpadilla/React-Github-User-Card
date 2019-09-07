@@ -6,7 +6,9 @@ const Repos = ({ repos }) => {
   return (
     <Container title='Repos'>
       {repos.map(repo => (
-        <p key={repo.id}>{repo.full_name}</p>
+        <a href={repo.html_url}>
+          <p key={repo.id}>{repo.full_name}</p>
+        </a>
       ))}
     </Container>
   );
