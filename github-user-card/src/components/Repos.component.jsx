@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Repos = () => {
+import { Container } from 'nes-react';
+
+const Repos = ({ repos }) => {
   return (
-    <div>
-      <h1>Repos placeholder</h1>
-    </div>
+    <Container title='Repos'>
+      {repos.map(repo => (
+        <p key={repo.id}>{repo.full_name}</p>
+      ))}
+    </Container>
   );
 };
 export default Repos;

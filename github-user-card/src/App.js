@@ -15,49 +15,70 @@ class App extends React.Component {
     this.state = {
       userInfo: {},
       followers: [],
-      repos: []
+      repos: [],
+      userName: ''
     };
   }
 
   componentDidMount() {
-    console.log('CDU');
     Axios.get('https://api.github.com/users/carlpadilla')
       .then(res => {
-        console.log('userinfo', res.data);
+        // console.log('userinfo', res.data);
         this.setState({ userInfo: res.data });
       })
       .catch(err => console.error(err));
 
     Axios.get('https://api.github.com/users/carlpadilla/followers')
       .then(res => {
-        console.log('followers', res.data);
+        // console.log('followers', res.data);
         this.setState({ followers: res.data });
       })
       .catch(err => console.error(err));
 
     Axios.get('https://api.github.com/users/carlpadilla/repos')
       .then(res => {
-        console.log('repos', res.data);
+        // console.log('repos', res.data);
         this.setState({ repos: res.data });
       })
       .catch(err => console.error(err));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('CDU');
+    if (this.state.userInfo !== prevState.userInfo) {
+      if (this.state.userName === 'carlpadilla') {
+        Axios.get(`https://api.github.com/users/${this.state.userName}`)
+          .then(res => this.setState({ userInfo: res.data }))
+          .catch(err => console.log('error'));
+      }
+    }
+  }
+
+  fetchUser = e => {
+    e.preventDefault();
+    Axios.get(`https://api.github.com/users/${this.state.userName}`)
+      .then(res => {
+        console.log('userName', res.data.login);
+        this.setState({ userName: res.data.login });
+      })
+      .catch(err => {
+        console.log(this.state);
+        console.error('Error', err);
+      });
+  };
+
   render() {
+    console.log('fetch', this.state);
     return (
       <div>
         <Container className='container'>
-          <Cards
-            userInfo={this.state.userInfo}
-            followers={this.state.followers}
-            repos={this.state.repos}
-          />
+          <Cards userInfo={this.state.userInfo} />
         </Container>
-        <Search />
+        <Search fetchUser={this.fetchUser} />
         <Container title='Followers'>
           <Followers followers={this.state.followers} />
         </Container>
-        <Repos />
+        <Repos repos={this.state.repos} />
       </div>
     );
   }

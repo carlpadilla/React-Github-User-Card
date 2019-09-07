@@ -1,35 +1,32 @@
 import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
-import {
-  Container,
-  Button,
-  Radios,
-  Checkbox,
-  TextInput,
-  TextArea,
-  Avatar,
-  Balloon,
-  List,
-  Table,
-  Progress,
-  Icon,
-  Sprite,
-  ControllerIcon
-} from 'nes-react';
+import { Container, Icon, Sprite, ControllerIcon } from 'nes-react';
 
-const Cards = props => (
+const Cards = ({ userInfo }) => (
   <div>
     <Grid>
       <Grid.Column width={6}>
-        <Image className='profile-img' src={props.userInfo.avatar_url} />
+        <Image className='profile-img' src={userInfo.avatar_url} />
+        <a href={userInfo.html_url}>
+          <Icon icon='github' />
+        </a>
+        <a href='https://www.linkedin.com/in/carl-padilla-2a85b294/'>
+          <Icon icon='linkedin' />
+        </a>
+        <a href='https://www.twitter.com/developer_carl'>
+          <Icon icon='twitter' />
+        </a>
+        <a href='https://www.psnprofiles.com/NISMO240'>
+          <ControllerIcon controller='nes' />
+        </a>
       </Grid.Column>
       <Grid.Column width={8}>
         <Container className='bio' title='Github Bio'>
-          Name: {props.userInfo.name}
+          Name: {userInfo.name}
           <br />
-          Location:{props.userInfo.location}
+          Location:{userInfo.location}
           <br />
-          Bio: {props.userInfo.bio}
+          Bio: {userInfo.bio}
           <div style={{ display: 'flex' }}>
             <Sprite sprite='squirtle' />
           </div>
